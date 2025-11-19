@@ -1,0 +1,99 @@
+PROJECT REPORT
+Project Title:
+Healthcare Treatment Management – Backend API (Django)
+1. Introduction
+My name is Anadi khare (25mim10218) i have made this project is the backend system for a small healthcare management application under vityarthi flipped course project.
+The idea is to keep records of doctors, patients, staff members, exercises and treatments.
+The backend is made in Django and Django REST Framework, and the data is shared in JSON format so that it can be connected with any frontend or mobile app.
+The system also uses token authentication, so only logged-in users can access their features.
+2. Aim of the Project
+To build a working backend for a healthcare system.
+To allow different types of users (doctor, patient, staff) to use different features.
+To store treatment details properly.
+To make an API that is simple to extend later.
+3. Technologies Used
+Python
+Django
+Django REST Framework
+SQLite (or any database supported by Django)
+4. Brief Description
+When a new user registers, a profile for that user is automatically created.
+The user can be a doctor, patient, or staff member depending on the data given.
+Doctors can add exercises and create treatments for patients.
+Patients can see their treatments.
+Staff members can be assigned to a treatment.
+Records can be created daily for tracking progress.
+Notifications can also be sent to patients.
+Different permission classes are made so that only authorized users can access certain features.
+5. Main Modules
+User
+Handles registration, login, and token creation.
+Each user gets a profile automatically through Django signals.
+Doctor
+Doctors have their own profile and can create exercises.
+Doctors can also create treatments for patients.
+Patient
+Patients have relatives linked and can check their own treatments and notifications.
+Staff
+Staff members can be assigned to treatments.
+Exercise
+Contains exercise name, code, instructions and level.
+Treatment
+Connects doctor, patient, staff, and exercises.
+Also stores medicine name, start date and end date.
+Record
+Stores daily progress on a particular treatment.
+Notification
+Simple notification table linked with user, treatment and patient.
+6. Database Overview (Simple Explanation)
+User → Default Django user table
+Profile → More details about user
+Doctor, Patient, Staff → Separate tables linked to user
+Exercise → List of exercises
+Treatment → Doctor + Patient + Staff + Exercises
+Record → Daily progress of treatment
+Notification → Messages for patients
+Relations used:
+One-to-One
+Foreign Keys
+Many-to-Many
+7. Important API Endpoints (Summary)
+User
+/register/ – Create new user
+/login/ – Login and get token
+Exercise
+/exercise/ – List or create exercise
+/exercise/<id>/ – Edit or delete exercise
+Treatment
+/treatment/ – Create or list treatments
+/treatment/list/ – List with more detail
+Patient
+/login/patient/treatments/ – Treatments of current patient
+/login/patient/<id>/ – Specific treatment
+/login/patient/relatives/ – Patient relatives
+Record
+/create/record/ – Mark progress
+Notification
+/create/notification/ – Create
+/login/patient/notifications/ – List
+8. Permissions
+Custom permissions:
+IsDoctor – Only doctor can access
+IsStaffMember – Only staff member
+IsOwnerOrReadOnly – Used for exercises so only the owner can edit
+9. How the System Works (Short Notes)
+User registers → profile is created → token generated
+Doctor logs in → adds exercises → creates treatments
+Patient logs in → sees treatment details
+Staff member → assigned to treatment
+Records are created regularly for progress
+Notifications are sent if needed
+10. Testing
+The API was tested using Postman.
+Different roles were tested with their permissions.
+Tested invalid fields, wrong login, missing data etc.
+11. Conclusion
+The system provides a basic working backend for a healthcare platform.
+It supports different user roles and stores treatment data in an organized way.
+The API can be connected easily to an app or web interface.
+The project can be expanded further by adding appointment system, messaging, or reports.
